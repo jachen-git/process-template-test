@@ -1,0 +1,17 @@
+Value Required INTERFACE (\S+)
+Value IP_ADDRESS (\S+)
+Value STATUS (\S+)
+Value PROTOCOL (\S+)
+Value VRF (\S+)
+
+Start
+  ^\s*Interface\s+IP-Address\s+Status\s+Protocol -> Interfaces
+  # Skip prompt, timestamp and any other preamble
+  ^.* -> Start
+
+Interfaces
+  ^${INTERFACE}\s+${IP_ADDRESS}\s+${STATUS}\s+${PROTOCOL}\s+${VRF}\s*$$ -> Record
+  ^${INTERFACE}\s+${IP_ADDRESS}\s+${STATUS}\s+${PROTOCOL}\s*$$ -> Record
+  ^\s*$$
+  ^.*\S+#
+  ^. -> Error
