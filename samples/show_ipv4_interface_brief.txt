@@ -1,0 +1,14 @@
+RP/0/RSP0/CPU0:PE1#show ipv4 interface brief
+Sun Nov 15 16:13:54.260 UTC
+
+Interface                      IP-Address      Status          Protocol Vrf-Name
+Loopback0                      10.0.0.1        Up              Up       default 
+MgmtEth0/RSP0/CPU0/0           192.168.1.10    Up              Up       MGMT    
+MgmtEth0/RSP1/CPU0/0           unassigned      Shutdown        Down     default 
+GigabitEthernet0/0/0/0         10.1.1.1        Up              Up       default 
+GigabitEthernet0/0/0/1         10.1.2.1        Up              Down     default 
+GigabitEthernet0/0/0/2         unassigned      Shutdown        Down     default 
+TenGigE0/1/0/0                 unassigned      Up              Up       default 
+TenGigE0/1/0/0.100             172.16.100.1    Up              Up       CUST_A  
+TenGigE0/1/0/0.200             172.16.200.1    Down            Down     CUST_B  
+Bundle-Ether1                  10.10.10.1      Up              Up       default 
