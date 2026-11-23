@@ -52,6 +52,25 @@ addresses, duplicate interfaces, and file errors produce an explicit error
 and exit code 2 rather than a partial report. Successful analysis exits 0,
 even when interfaces are down.
 
+## BPA process template
+
+For BPA, upload `bpa_analyze_interfaces.py` in the Scripts tab and attach it
+as a Script rule to a `show ipv4 interface brief` process-template command.
+Configure that command's TextFSM processing with
+`templates\bpa_iosxr_show_ipv4_interface_brief.textfsm`. Its field names are
+case-sensitive: `status` and `protocol`.
+The script uses BPA's `devpackage.DataProvider` and the PRE collection; it
+does not import `ipaddress`, `collections`, or the standalone Python TextFSM
+package.
+
+The pre-check reports each observed Up/Up, Down/Down, or Shutdown/Down state
+once, without counts. Other valid status/protocol combinations are ignored.
+Link states are informational and do not fail the check. Missing or invalid
+fields and an empty result fail the pre-check. It does not retrieve interface
+names, addresses, or VRFs. The BPA runtime supplies `context`; the script is
+not a standalone command-line program. Configure the parser to reject
+malformed rows rather than silently omit them.
+
 ## Tests
 
 ```powershell

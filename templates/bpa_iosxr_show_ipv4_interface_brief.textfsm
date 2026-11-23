@@ -1,0 +1,11 @@
+Value Required status (Up|Down|Shutdown)
+Value Required protocol (Up|Down)
+
+Start
+  ^\s*Interface\s+IP-Address\s+Status\s+Protocol\s+Vrf-Name\s*$$ -> Interfaces
+
+Interfaces
+  ^\s*$$
+  ^\s*\S+\s+\S+\s+${status}\s+${protocol}\s+\S+\s*$$ -> Record
+  ^\S+[>#]\s*$$ -> End
+  ^. -> Error "Unrecognized interface row"
